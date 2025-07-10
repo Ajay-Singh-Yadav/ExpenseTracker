@@ -1,0 +1,134 @@
+{
+  "project_info": {
+    "project_number": "922513545079",
+    "project_id": "signin-example-571ec",
+    "storage_bucket": "signin-example-571ec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922513545079:android:982a51da7e7b6874b2f372",
+        "android_client_info": {
+          "package_name": "com.expensetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtWbwkRM2PAxk6Glkey5kci8Yblm2CZEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922513545079:android:0ac89f451b0fd052b2f372",
+        "android_client_info": {
+          "package_name": "com.openfashion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtWbwkRM2PAxk6Glkey5kci8Yblm2CZEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922513545079:android:9c76216e3019845bb2f372",
+        "android_client_info": {
+          "package_name": "com.shopx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922513545079-b86imp02lits0l91eigtenjhnqombf1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shopx",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtWbwkRM2PAxk6Glkey5kci8Yblm2CZEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922513545079:android:4f9a68bc02790a53b2f372",
+        "android_client_info": {
+          "package_name": "com.starter_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtWbwkRM2PAxk6Glkey5kci8Yblm2CZEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
