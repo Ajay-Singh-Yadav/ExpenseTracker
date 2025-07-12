@@ -13,12 +13,28 @@ import { useNavigation } from '@react-navigation/native';
 import useLogInStyle from '../hooks/useLogInStyle';
 import Sizes from '../utils/responsive';
 
+import auth from '@react-native-firebase/auth';
+
 const LoginScreen = () => {
   const styles = useLogInStyle();
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSignin = async () => {
+    try {
+      if (!email || !password) {
+        alert('All fields are required');
+        return;
+      }
+
+      await auth().signInWithEmailAndPassword(email, password);
+      navigation.navigate('Home');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -61,7 +77,7 @@ const LoginScreen = () => {
           <Text style={styles.forgotPasswordButtonText}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.signInButton}>
+        <TouchableOpacity style={styles.signInButton} onPress={handleSignin}>
           <Text style={styles.signInButtonText}>SignIn</Text>
         </TouchableOpacity>
 

@@ -29,6 +29,8 @@ const Sizes = {
   fontLG: moderateScale(20),
   fontXL: moderateScale(24),
   fontXXL: moderateScale(28),
+  fontXXXL: moderateScale(32),
+  fontXXXXL: moderateScale(36),
 
   // Radius
   radiusSM: scale(6),
