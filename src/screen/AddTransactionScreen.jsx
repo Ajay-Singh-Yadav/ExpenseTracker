@@ -1,8 +1,15 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 
 import useAddTxtStyle from '../hooks/useAddTxtStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AddTransactionScreen = () => {
@@ -24,6 +31,30 @@ const AddTransactionScreen = () => {
 
       {/* Line  */}
       <View style={styles.line} />
+
+      {/* Card Section */}
+
+      <View style={styles.cardContainer}>
+        {/* Card */}
+        <View style={styles.card}>
+          <View style={styles.InExContainer}>
+            <View style={styles.InEx}>
+              <Ionicons name="arrow-up-circle" size={25} color="green" />
+              <Text style={styles.InExText}>Income</Text>
+            </View>
+            <View style={styles.InEx}>
+              <Ionicons name="arrow-down-circle" size={25} color="red" />
+              <Text style={styles.InExText}>Expense</Text>
+            </View>
+          </View>
+
+          {/* TextInput */}
+          <View style={styles.inputContainer}>
+            <FontAwesome name="dollar" size={30} color="black" />
+            <TextInput style={styles.input} placeholder="Enter Amount" />
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
