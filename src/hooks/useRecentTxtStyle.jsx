@@ -26,6 +26,9 @@ const useRecentTxtStyle = () => {
           padding: Sizes.scale(10),
           marginTop: Sizes.verticalScale(10),
         },
+        contentConatiner: {
+          paddingBottom: 25,
+        },
         image: {
           width: Sizes.scale(30),
           height: Sizes.scale(30),

@@ -14,6 +14,10 @@ const HomeScreen = () => {
 
   const navigation = useNavigation();
 
+  const handleProfile = () => {
+    navigation.navigate('Profile');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -36,8 +40,9 @@ const HomeScreen = () => {
             <Ionicons name={'add'} size={20} color="#fff" />
             <Text style={styles.addText}>Add</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.logoutButton}>
-            <MaterialIcons name={'logout'} size={28} color="#000" />
+
+          <TouchableOpacity style={styles.logoutButton} onPress={handleProfile}>
+            <Ionicons name="settings-outline" size={28} color="#000" />
           </TouchableOpacity>
         </View>
       </View>

@@ -3,6 +3,7 @@ import { Animated, View, Image, InteractionManager, Text } from 'react-native';
 import useSplash from '../hooks/useSplash';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
+import auth from '@react-native-firebase/auth';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -17,14 +18,22 @@ const SplashScreen = () => {
       useNativeDriver: true,
     }).start();
 
-    const timeout = setTimeout(() => {
-      navigation.replace('LogIn');
-    }, 3000);
+    const chechUser = () => {
+      const unsubscribe = auth().onAuthStateChanged(user => {
+        if (user) {
+          navigation.replace('Home');
+        } else {
+          navigation.replace('LogIn');
+        }
+      });
+      return unsubscribe;
+    };
 
+    const timeout = setTimeout(chechUser, 2000);
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [navigation]);
 
   useEffect(() => {
     lottieRef.current?.play();

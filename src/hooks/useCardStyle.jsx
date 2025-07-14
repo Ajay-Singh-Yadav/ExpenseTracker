@@ -39,7 +39,7 @@ const useCardStyle = () => {
         },
         cardValue: {
           fontSize: Sizes.fontXXXXL,
-          fontWeight: 'bold',
+          fontWeight: '600',
         },
         IncomeExpense: {
           flexDirection: 'row',
@@ -59,15 +59,15 @@ const useCardStyle = () => {
         },
         IncomeText: {
           fontSize: Sizes.fontSM,
-          fontWeight: '500',
+          fontWeight: '400',
         },
         ExpenseText: {
           fontSize: Sizes.fontSM,
-          fontWeight: '500',
+          fontWeight: '400',
         },
         amoutText: {
           fontSize: Sizes.fontLG,
-          fontWeight: 'bold',
+          fontWeight: '500',
         },
       }),
     [theme, width],

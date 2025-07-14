@@ -78,11 +78,15 @@ const AddTransactionScreen = () => {
               style={[styles.InEx, type === 'Income' && styles.selectedType]}
               onPress={() => setType('Income')}
             >
-              <Ionicons name="arrow-up-circle" size={25} color="green" />
+              <Ionicons
+                name="arrow-up-circle"
+                size={25}
+                color={type === 'Income' ? 'white' : 'green'}
+              />
               <Text
                 style={[
                   styles.InExText,
-                  type != 'Income' && { color: 'Black' },
+                  type != 'Income' ? { color: 'Black' } : { color: 'white' },
                 ]}
               >
                 Income
@@ -92,11 +96,15 @@ const AddTransactionScreen = () => {
               style={[styles.InEx, type === 'Expense' && styles.selectedType]}
               onPress={() => setType('Expense')}
             >
-              <Ionicons name="arrow-down-circle" size={25} color="red" />
+              <Ionicons
+                name="arrow-down-circle"
+                size={25}
+                color={type === 'Expense' ? 'white' : 'red'}
+              />
               <Text
                 style={[
                   styles.InExText,
-                  type != 'Expense' && { color: 'Black' },
+                  type != 'Expense' ? { color: 'Black' } : { color: 'white' },
                 ]}
               >
                 Expense
@@ -106,7 +114,12 @@ const AddTransactionScreen = () => {
 
           {/* TextInput */}
           <View style={styles.inputContainer}>
-            <FontAwesome name="dollar" size={30} color="black" />
+            <FontAwesome
+              name="rupee"
+              size={30}
+              color="black"
+              style={styles.icon}
+            />
             <TextInput
               value={amount}
               onChangeText={setAmount}

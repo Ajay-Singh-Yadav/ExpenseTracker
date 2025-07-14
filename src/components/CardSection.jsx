@@ -28,7 +28,7 @@ const CardSection = () => {
           <View style={styles.Income}>
             <Text style={styles.IncomeText}>Income</Text>
             <Text style={[styles.amoutText, { color: '#2ECC71' }]}>
-              + ₹30000000
+              + ₹{income.toFixed(2)}
             </Text>
           </View>
 
@@ -37,7 +37,7 @@ const CardSection = () => {
           <View style={styles.Expense}>
             <Text style={styles.ExpenseText}>Expense</Text>
             <Text style={[styles.amoutText, { color: '#E74C3C' }]}>
-              - ₹2000000
+              - ₹{expense.toFixed(2)}
             </Text>
           </View>
         </View>

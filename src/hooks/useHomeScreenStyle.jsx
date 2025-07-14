@@ -17,7 +17,6 @@ const useHomeScreenStyle = () => {
           backgroundColor: theme.background,
         },
         header: {
-          marginTop: Sizes.verticalScale(20),
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -72,6 +71,11 @@ const useHomeScreenStyle = () => {
           color: theme.text,
           marginLeft: Sizes.scale(10),
           marginTop: Sizes.verticalScale(10),
+        },
+        settingButton: {
+          alignSelf: 'flex-end',
+          marginRight: Sizes.scale(15),
+          marginTop: Sizes.verticalScale(5),
         },
       }),
     [theme],

@@ -83,7 +83,7 @@ const useAddTxtStyle = () => {
           borderColor: theme.border,
           borderRadius: Sizes.scale(30),
           padding: Sizes.scale(10),
-          gap: 10,
+          gap: 5,
         },
 
         selectedType: {
@@ -101,6 +101,9 @@ const useAddTxtStyle = () => {
           flex: 1,
           fontSize: Sizes.fontXL,
           color: theme.text,
+        },
+        icon: {
+          marginTop: Sizes.verticalScale(3),
         },
       }),
     [theme, width, height, isLandscape],

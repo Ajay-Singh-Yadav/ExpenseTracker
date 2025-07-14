@@ -60,6 +60,7 @@ const RecentTransactions = () => {
       data={sortedTransactions}
       keyExtractor={item => item.id}
       renderItem={renderItem}
+      contentContainerStyle={styles.contentConatiner}
     />
   );
 };
