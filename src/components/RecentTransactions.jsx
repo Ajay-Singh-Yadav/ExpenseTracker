@@ -1,13 +1,18 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-
 import useRecentTxtStyle from '../hooks/useRecentTxtStyle';
-
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useSelector } from 'react-redux';
 
 const RecentTransactions = () => {
   const styles = useRecentTxtStyle();
-  return (
+
+  const transactions = useSelector(state => state.transaction.transactions);
+  const sortedTransactions = [...transactions].sort(
+    (a, b) => b.timestamp - a.timestamp,
+  );
+
+  const renderItem = ({ item }) => (
     <View style={styles.container}>
       <View style={styles.LeftView}>
         <Image
@@ -16,18 +21,28 @@ const RecentTransactions = () => {
         />
         <View style={styles.slaryView}>
           <Text style={styles.salaryText}>Salary</Text>
-          <Text style={styles.datetext}>Income</Text>
+          <Text style={styles.datetext}>{item.type}</Text>
         </View>
       </View>
 
       <View style={styles.rightView}>
         <View>
-          <Text style={styles.amoutText}>+₹500000</Text>
-          <Text style={styles.datetext}>23/05/2023</Text>
+          <Text
+            style={[
+              styles.amoutText,
+              { color: item.type === 'Income' ? '#2ECC71' : '#E74C3C' },
+            ]}
+          >
+            {item.type === 'Income' ? '+ ' : '- '}₹{item.amount.toFixed(2)}
+          </Text>
+          <Text style={styles.datetext}>
+            {' '}
+            {new Date(item.timestamp).toLocaleDateString()}
+          </Text>
         </View>
 
         <View style={styles.deleteIcon}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('TODO: delete')}>
             <MaterialIcons
               name="delete"
               size={26}
@@ -38,6 +53,14 @@ const RecentTransactions = () => {
         </View>
       </View>
     </View>
+  );
+
+  return (
+    <FlatList
+      data={sortedTransactions}
+      keyExtractor={item => item.id}
+      renderItem={renderItem}
+    />
   );
 };
 

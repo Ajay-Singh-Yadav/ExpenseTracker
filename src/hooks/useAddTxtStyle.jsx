@@ -85,6 +85,10 @@ const useAddTxtStyle = () => {
           padding: Sizes.scale(10),
           gap: 10,
         },
+
+        selectedType: {
+          backgroundColor: theme.primary,
+        },
         inputContainer: {
           flexDirection: 'row',
           alignItems: 'center',

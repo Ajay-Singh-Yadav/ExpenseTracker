@@ -20,7 +20,7 @@ const useHomeScreenStyle = () => {
           marginTop: Sizes.verticalScale(20),
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'space-between', // responsive layout
+          justifyContent: 'space-between',
           paddingHorizontal: Sizes.scale(10),
         },
         image: {

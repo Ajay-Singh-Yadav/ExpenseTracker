@@ -52,11 +52,6 @@ const HomeScreen = () => {
 
       {/* Recent Transactions */}
       <RecentTransactions />
-      <RecentTransactions />
-      <RecentTransactions />
-      <RecentTransactions />
-      <RecentTransactions />
-      <RecentTransactions />
     </SafeAreaView>
   );
 };
