@@ -35,7 +35,7 @@ const useCardStyle = () => {
         },
         cardTitle: {
           fontSize: Sizes.fontMD,
-          fontWeight: 'bold',
+          fontWeight: '600',
         },
         cardValue: {
           fontSize: Sizes.fontXXXXL,
@@ -59,18 +59,15 @@ const useCardStyle = () => {
         },
         IncomeText: {
           fontSize: Sizes.fontSM,
-          fontWeight: 'bold',
-          color: theme.income,
+          fontWeight: '500',
         },
         ExpenseText: {
           fontSize: Sizes.fontSM,
-          fontWeight: 'bold',
-          color: theme.expense,
+          fontWeight: '500',
         },
         amoutText: {
           fontSize: Sizes.fontLG,
           fontWeight: 'bold',
-          color: theme.text,
         },
       }),
     [theme, width],

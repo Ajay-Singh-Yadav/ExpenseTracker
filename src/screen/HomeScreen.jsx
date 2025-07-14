@@ -6,9 +6,13 @@ import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import CardSection from '../components/CardSection';
+import RecentTransactions from '../components/RecentTransactions';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const styles = useHomeScreenStyle();
+
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,7 +29,10 @@ const HomeScreen = () => {
         </View>
 
         <View style={styles.rightHeader}>
-          <TouchableOpacity style={styles.addButton}>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate('AddTransaction')}
+          >
             <Ionicons name={'add'} size={20} color="#fff" />
             <Text style={styles.addText}>Add</Text>
           </TouchableOpacity>
@@ -38,6 +45,18 @@ const HomeScreen = () => {
       {/* Card Section */}
 
       <CardSection />
+
+      {/* Transaction Section */}
+
+      <Text style={styles.transactionText}>Recent Transaction</Text>
+
+      {/* Recent Transactions */}
+      <RecentTransactions />
+      <RecentTransactions />
+      <RecentTransactions />
+      <RecentTransactions />
+      <RecentTransactions />
+      <RecentTransactions />
     </SafeAreaView>
   );
 };

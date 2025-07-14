@@ -15,7 +15,6 @@ const useHomeScreenStyle = () => {
         container: {
           flex: 1,
           backgroundColor: theme.background,
-          paddingHorizontal: Sizes.scale(3),
         },
         header: {
           marginTop: Sizes.verticalScale(20),
@@ -62,6 +61,13 @@ const useHomeScreenStyle = () => {
         },
         cardSectionText: {
           fontSize: Sizes.fontSM,
+          fontWeight: 'bold',
+          color: theme.text,
+          marginLeft: Sizes.scale(10),
+          marginTop: Sizes.verticalScale(10),
+        },
+        transactionText: {
+          fontSize: Sizes.fontMD,
           fontWeight: 'bold',
           color: theme.text,
           marginLeft: Sizes.scale(10),

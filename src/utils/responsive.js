@@ -23,6 +23,7 @@ const Sizes = {
   spacingXL: scale(32),
 
   // Font sizes
+  fontXXS: moderateScale(10),
   fontXS: moderateScale(12),
   fontSM: moderateScale(14),
   fontMD: moderateScale(16),
