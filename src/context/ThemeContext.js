@@ -26,7 +26,7 @@ const loadThemeByKey = async key => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState(require('../themes/coffee').default);
   const [currentTheme, setCurrentTheme] = useState('coffee');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -61,9 +61,7 @@ export const ThemeProvider = ({ children }) => {
   );
 
   return (
-    <ThemeContext.Provider value={value}>
-      {!isLoading ? children : null}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 

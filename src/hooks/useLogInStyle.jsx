@@ -9,18 +9,11 @@ const useLogInStyle = () => {
   return useMemo(
     () =>
       StyleSheet.create({
-        safeContainer: {
-          flex: 1,
-          backgroundColor: theme.background,
-        },
-        avoidContainer: {
-          flex: 1,
-        },
         scrollContent: {
           flexGrow: 1,
           justifyContent: 'center',
-          paddingHorizontal: Sizes.scale(20),
-          paddingVertical: Sizes.verticalScale(30),
+          paddingHorizontal: Sizes.scale(10),
+          backgroundColor: theme.background,
         },
         logoContainer: {
           alignItems: 'center',
@@ -79,6 +72,29 @@ const useLogInStyle = () => {
           marginLeft: Sizes.scale(5),
           fontWeight: '600',
           fontFamily: 'SpaceMono-Regular',
+        },
+        LoginOptions: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: Sizes.verticalScale(20),
+          gap: Sizes.scale(30),
+          paddingVertical: Sizes.verticalScale(10),
+        },
+        mobileButton: {
+          alignItems: 'center',
+          gap: Sizes.scale(2),
+        },
+        mobileButtonText: {
+          color: theme.text,
+          fontSize: Sizes.scale(8),
+          fontWeight: '600',
+          fontFamily: 'SpaceMono-Regular',
+        },
+        googleIcon: {
+          width: Sizes.scale(25),
+          height: Sizes.scale(25),
+          resizeMode: 'contain',
         },
       }),
     [theme],

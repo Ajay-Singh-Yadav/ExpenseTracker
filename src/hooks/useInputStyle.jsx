@@ -10,7 +10,7 @@ const useInputStyle = () => {
     () =>
       StyleSheet.create({
         container: {
-          marginBottom: Sizes.verticalScale(15),
+          marginBottom: Sizes.verticalScale(12),
           paddingHorizontal: Sizes.scale(14),
         },
         inputWrapper: {
@@ -18,19 +18,19 @@ const useInputStyle = () => {
           alignItems: 'center',
           backgroundColor: theme.white,
           borderRadius: Sizes.scale(12),
-          paddingHorizontal: 10,
-          paddingVertical: Platform.OS === 'android' ? 6 : 0,
+          paddingHorizontal: Sizes.scale(8),
+          paddingVertical: Platform.OS === 'android' ? 4 : 0,
           borderWidth: 1,
           borderColor: theme.border,
         },
         icon: {
-          marginRight: 10,
+          marginRight: Sizes.scale(5),
         },
         input: {
           flex: 1,
-          fontSize: 16,
+          fontSize: Sizes.fontSM,
           color: theme.text,
-          paddingVertical: 10,
+          paddingVertical: Sizes.verticalScale(6),
         },
       }),
     [theme],

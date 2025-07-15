@@ -67,7 +67,7 @@ const useHomeScreenStyle = () => {
         },
         transactionText: {
           fontSize: Sizes.fontMD,
-          fontWeight: 'bold',
+          fontWeight: '500',
           color: theme.text,
           marginLeft: Sizes.scale(10),
           marginTop: Sizes.verticalScale(10),
