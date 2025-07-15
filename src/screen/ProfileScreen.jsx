@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import auth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
+import getAuth from '@react-native-firebase/auth';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useProfileStyle from '../hooks/useProfileStyle';
 import { useTheme } from '../context/ThemeContext';
@@ -27,7 +28,7 @@ const ProfileScreen = () => {
 
   const handleLogout = async () => {
     try {
-      await auth().signOut();
+      await getAuth().signOut();
       navigation.reset({
         index: 0,
         routes: [{ name: 'LogIn' }],

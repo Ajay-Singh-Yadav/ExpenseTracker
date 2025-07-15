@@ -10,7 +10,6 @@ const useInputStyle = () => {
     () =>
       StyleSheet.create({
         container: {
-          marginBottom: Sizes.verticalScale(12),
           paddingHorizontal: Sizes.scale(14),
         },
         inputWrapper: {

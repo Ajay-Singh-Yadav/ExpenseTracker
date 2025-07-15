@@ -11,29 +11,21 @@ const useSplash = () => {
       StyleSheet.create({
         mainContaoiner: {
           flex: 1,
-          backgroundColor: theme.background,
           justifyContent: 'center',
           alignItems: 'center',
         },
         container: {
           flex: 1,
-          backgroundColor: theme.background,
           justifyContent: 'center',
           alignItems: 'center',
-        },
-        image: {
-          width: Sizes.screenWidth * 0.6,
-          height: Sizes.screenHeight * 0.3,
-          marginBottom: 20,
-          resizeMode: 'contain',
         },
         text: {
           color: theme.text,
           fontSize: 16,
         },
         lottie: {
-          width: 200,
-          height: 200,
+          width: Sizes.screenWidth,
+          height: Sizes.screenHeight * 0.5,
         },
       }),
     [theme],

@@ -20,7 +20,6 @@ const useLogInStyle = () => {
           marginBottom: Sizes.verticalScale(20),
         },
         image: {
-          marginTop: Sizes.verticalScale(60),
           width: Sizes.screenWidth * 0.6,
           height: Sizes.screenHeight * 0.3,
           resizeMode: 'contain',
@@ -28,7 +27,7 @@ const useLogInStyle = () => {
         title: {
           fontSize: Sizes.scale(28),
           color: theme.text,
-          fontWeight: 'bold',
+          fontWeight: '500',
           marginTop: Sizes.verticalScale(10),
           textAlign: 'center',
         },
@@ -95,6 +94,13 @@ const useLogInStyle = () => {
           width: Sizes.scale(25),
           height: Sizes.scale(25),
           resizeMode: 'contain',
+        },
+        errorText: {
+          color: 'red',
+          fontSize: Sizes.scale(8),
+          fontWeight: '400',
+          marginLeft: Sizes.scale(25),
+          minHeight: Sizes.verticalScale(20),
         },
       }),
     [theme],

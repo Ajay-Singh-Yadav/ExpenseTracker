@@ -29,7 +29,7 @@ const SplashScreen = () => {
       return unsubscribe;
     };
 
-    const timeout = setTimeout(chechUser, 2000);
+    const timeout = setTimeout(chechUser, 20000);
     return () => {
       clearTimeout(timeout);
     };
@@ -45,15 +45,9 @@ const SplashScreen = () => {
 
   return (
     <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-      <Image
-        source={require('../assets/images/revenue-i2.png')}
-        style={styles.image}
-        resizeMode="contain"
-      />
-
       <LottieView
         ref={lottieRef}
-        source={require('../assets/animations/coin.json')}
+        source={require('../assets/animations/Fintech.json')}
         autoPlay
         loop={true}
         style={styles.lottie}
