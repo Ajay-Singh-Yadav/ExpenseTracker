@@ -1,4 +1,11 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
@@ -9,14 +16,37 @@ import RecentTransactions from '../components/RecentTransactions';
 import { useNavigation } from '@react-navigation/native';
 import CategoryDropdown from '../components/CategoryDropdown';
 
+// Apollo
+import { useQuery } from '@apollo/client';
+import { GET_TRANSACTIONS } from '../Graphql/queries/queries';
+
 const HomeScreen = () => {
   const styles = useHomeScreenStyle();
-
   const navigation = useNavigation();
+  const { loading, error, data } = useQuery(GET_TRANSACTIONS);
 
   const handleProfile = () => {
     navigation.navigate('Profile');
   };
+
+  if (loading) return <ActivityIndicator size="large" />;
+  if (error) return <Text>Error: {error.message}</Text>;
+
+  if (!loading && data) {
+    console.log('Transactions:', data.transactions);
+  }
+
+  const transactions = data.transactions;
+
+  const income = transactions
+    .filter(t => t.type === 'Income')
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const expense = transactions
+    .filter(t => t.type === 'Expense')
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const balance = income - expense;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,7 +79,7 @@ const HomeScreen = () => {
 
       {/* Card Section */}
 
-      <CardSection />
+      <CardSection income={income} expense={expense} balance={balance} />
 
       {/* Transaction Section */}
 
@@ -61,7 +91,7 @@ const HomeScreen = () => {
       </View>
 
       {/* Recent Transactions */}
-      <RecentTransactions />
+      <RecentTransactions transactions={data.transactions} />
     </SafeAreaView>
   );
 };

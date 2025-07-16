@@ -7,10 +7,12 @@ import categories from '../constant/categories';
 import Sizes from '../utils/responsive';
 import { useTheme } from '../context/ThemeContext';
 
-const RecentTransactions = () => {
+const RecentTransactions = ({ transactions }) => {
   const styles = useRecentTxtStyle();
   const { theme } = useTheme();
-  const transactions = useSelector(state => state.transaction.transactions);
+
+  // const transactions = useSelector(state => state.transaction.transactions);
+
   const sortedTransactions = [...transactions].sort(
     (a, b) => b.timestamp - a.timestamp,
   );

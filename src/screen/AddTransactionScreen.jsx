@@ -23,7 +23,14 @@ import { v4 as uuidv4 } from 'uuid';
 import Sizes from '../utils/responsive';
 import Category from '../components/Category';
 
+// Apollo
+import { useMutation } from '@apollo/client';
+import { ADD_TRANSACTION } from '../Graphql/mutations/mutations';
+
 const AddTransactionScreen = () => {
+  const [addTransactionMutation, { loading, error }] =
+    useMutation(ADD_TRANSACTION);
+
   const { theme } = useTheme();
   const styles = useAddTxtStyle();
 
@@ -36,21 +43,52 @@ const AddTransactionScreen = () => {
 
   const navigation = useNavigation();
 
-  const handleAdd = () => {
+  // const handleAdd = () => {
+  //   if (!amount || !type || !title || !selectedCategory) return;
+
+  //   dispatch(
+  //     addTransaction({
+  //       id: uuidv4(),
+  //       amount: parseFloat(amount),
+  //       type,
+  //       timestamp: Date.now(),
+  //       title,
+  //       category: selectedCategory,
+  //     }),
+  //   );
+
+  //   navigation.goBack();
+  // };
+
+  const handleAdd = async () => {
     if (!amount || !type || !title || !selectedCategory) return;
 
-    dispatch(
-      addTransaction({
-        id: uuidv4(),
-        amount: parseFloat(amount),
-        type,
-        timestamp: Date.now(),
-        title,
-        category: selectedCategory,
-      }),
-    );
+    try {
+      const response = await addTransactionMutation({
+        variables: {
+          title,
+          amount: parseFloat(amount),
+          type,
+          category: selectedCategory,
+        },
+      });
 
-    navigation.goBack();
+      // Optional: update Redux store locally too (not required if you fetch again from backend)
+      dispatch(
+        addTransaction({
+          id: response.data.addTransaction.id,
+          amount: response.data.addTransaction.amount,
+          type: response.data.addTransaction.type,
+          timestamp: response.data.addTransaction.timestamp,
+          title: response.data.addTransaction.title,
+          category: response.data.addTransaction.category,
+        }),
+      );
+
+      navigation.goBack();
+    } catch (err) {
+      console.error('❌ Failed to add transaction:', err.message);
+    }
   };
 
   return (
@@ -76,7 +114,6 @@ const AddTransactionScreen = () => {
             disabled={!amount || !type || !title || !selectedCategory}
           >
             <Text style={styles.saveText}>Save</Text>
-            {/* <Ionicons name="checkmark" size={20} color="black" /> */}
           </TouchableOpacity>
         </View>
 
@@ -173,5 +210,3 @@ const AddTransactionScreen = () => {
 };
 
 export default AddTransactionScreen;
-
-const styles = StyleSheet.create({});

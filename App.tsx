@@ -6,6 +6,7 @@ import { ThemeProvider } from './src/context/ThemeContext';
 import AppNavigation from './src/navigator/AppNavigation';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import ApolloClientProvider from './src/Graphql/ApolloClientProvider';
 
 const App = () => {
   return (
@@ -15,10 +16,13 @@ const App = () => {
         translucent={true}
         barStyle={'dark-content'}
       />
+
       <Provider store={store}>
-        <ThemeProvider>
-          <AppNavigation />
-        </ThemeProvider>
+        <ApolloClientProvider>
+          <ThemeProvider>
+            <AppNavigation />
+          </ThemeProvider>
+        </ApolloClientProvider>
       </Provider>
     </>
   );
