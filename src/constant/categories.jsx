@@ -6,11 +6,12 @@ const categories = [
   { name: 'Shopping', icon: 'shopping-bag', lib: Feather },
   { name: 'Travel', icon: 'airplane-outline', lib: Ionicons },
   { name: 'Entertainment', icon: 'film-outline', lib: Ionicons },
-  { name: 'Income', icon: 'cash-outline', lib: Ionicons },
-  { name: 'Bills', icon: 'file-text', lib: Feather },
-
-  { name: 'Rent', icon: 'home-outline', lib: Ionicons },
   { name: "Loan & EMI's", icon: 'credit-card', lib: Feather },
+  { name: 'Rent', icon: 'home-outline', lib: Ionicons },
+  { name: 'Income', icon: 'cash-outline', lib: Ionicons },
+  { name: 'medical bills', icon: 'medical-outline', lib: Ionicons },
+  { name: 'Bill Payments', icon: 'file-text', lib: Feather },
+
   { name: 'Others', icon: 'apps-outline', lib: Ionicons },
 ];
 

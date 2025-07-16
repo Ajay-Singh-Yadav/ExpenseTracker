@@ -36,6 +36,7 @@ const useAddTxtStyle = () => {
         saveButton: {
           flexDirection: 'row',
           alignItems: 'center',
+          marginRight: Sizes.scale(5),
         },
         line: {
           marginTop: Sizes.verticalScale(10),

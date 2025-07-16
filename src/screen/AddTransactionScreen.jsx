@@ -76,7 +76,7 @@ const AddTransactionScreen = () => {
             disabled={!amount || !type || !title || !selectedCategory}
           >
             <Text style={styles.saveText}>Save</Text>
-            <Ionicons name="checkmark" size={20} color="black" />
+            {/* <Ionicons name="checkmark" size={20} color="black" /> */}
           </TouchableOpacity>
         </View>
 
