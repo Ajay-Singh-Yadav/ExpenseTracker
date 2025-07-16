@@ -12,3 +12,16 @@ export const GET_TRANSACTIONS = gql`
     }
   }
 `;
+
+export const GET_TRANSACTIONS_BY_CATEGORY = gql`
+  query GetTransactionsByCategory($category: String!) {
+    transactionsByCategory(category: $category) {
+      id
+      title
+      amount
+      type
+      category
+      timestamp
+    }
+  }
+`;

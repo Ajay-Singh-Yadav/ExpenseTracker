@@ -17,6 +17,7 @@ const useHomeScreenStyle = () => {
           backgroundColor: theme.background,
         },
         header: {
+          marginTop: Sizes.verticalScale(30),
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',

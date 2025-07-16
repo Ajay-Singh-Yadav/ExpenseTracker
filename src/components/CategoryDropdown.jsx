@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Sizes from '../utils/responsive';
@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
 const categories = [
+  { label: 'All', value: 'All', icon: 'apps-outline', lib: Ionicons },
   {
     label: 'Food & Drinks',
     value: 'Food & Drinks',
@@ -22,13 +23,12 @@ const categories = [
     lib: Ionicons,
   },
   {
-    label: 'Salary Income',
-    value: 'Salary',
+    label: 'Income',
+    value: 'Income',
     icon: 'cash-outline',
     lib: Ionicons,
   },
   { label: 'Bills', value: 'Bills', icon: 'file-text', lib: Feather },
-
   { label: 'Rent', value: 'Rent', icon: 'home-outline', lib: Ionicons },
   {
     label: "Loan & EMI's",
@@ -39,21 +39,27 @@ const categories = [
   { label: 'Others', value: 'Others', icon: 'apps-outline', lib: Ionicons },
 ];
 
-const CategoryDropdown = () => {
-  const [value, setValue] = useState(null);
+const CategoryDropdown = ({ selectedCategory, onSelectCategory }) => {
+  const currentValue = selectedCategory === '' ? 'All' : selectedCategory;
+
   const selectedLabel =
-    categories.find(item => item.value === value)?.label ?? '';
-  const dynamicWidth = Sizes.scale(selectedLabel.length > 8 ? 100 : 79);
+    categories.find(item => item.value === currentValue)?.label ?? '';
+
+  const dynamicWidth = Sizes.scale(selectedLabel.length > 8 ? 100 : 75);
 
   return (
     <Dropdown
       data={categories}
       labelField="label"
       valueField="value"
-      placeholder="category"
-      value={value}
+      placeholder="Category"
+      value={currentValue}
       onChange={item => {
-        setValue(item.value);
+        if (item.value === 'All') {
+          onSelectCategory('');
+        } else {
+          onSelectCategory(item.value);
+        }
       }}
       placeholderStyle={styles.placeholder}
       selectedTextStyle={styles.selectedText}
@@ -75,19 +81,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: Sizes.scale(5),
   },
-
   iconStyle: {
     width: Sizes.scale(16),
     height: Sizes.scale(16),
     tintColor: '#888',
     justifyContent: 'center',
   },
-
   placeholder: {
     fontSize: 12,
     color: '#888',
   },
-
   dropdownBox: {
     borderRadius: 10,
   },

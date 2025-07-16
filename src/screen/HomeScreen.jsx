@@ -1,45 +1,94 @@
 import {
   ActivityIndicator,
   Image,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from 'react-native';
-import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
-
+import React, { useEffect, useState } from 'react';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
 import CardSection from '../components/CardSection';
 import RecentTransactions from '../components/RecentTransactions';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
 import CategoryDropdown from '../components/CategoryDropdown';
 
-// Apollo
 import { useQuery } from '@apollo/client';
-import { GET_TRANSACTIONS } from '../Graphql/queries/queries';
+import {
+  GET_TRANSACTIONS,
+  GET_TRANSACTIONS_BY_CATEGORY,
+} from '../Graphql/queries/queries';
 
 const HomeScreen = () => {
   const styles = useHomeScreenStyle();
   const navigation = useNavigation();
-  const { loading, error, data, refetch } = useQuery(GET_TRANSACTIONS);
   const isFocused = useIsFocused();
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  React.useEffect(() => {
+  // Always fetch all transactions
+  const {
+    data: allData,
+    loading: allLoading,
+    error: allError,
+    refetch: refetchAll,
+  } = useQuery(GET_TRANSACTIONS, {
+    fetchPolicy: 'network-only',
+  });
+
+  // Conditionally fetch category transactions
+  const {
+    data: categoryData,
+    loading: categoryLoading,
+    error: categoryError,
+    refetch: refetchCategory,
+  } = useQuery(GET_TRANSACTIONS_BY_CATEGORY, {
+    variables: { category: selectedCategory },
+    skip: !selectedCategory || selectedCategory === 'All',
+    fetchPolicy: 'network-only',
+  });
+
+  useEffect(() => {
     if (isFocused) {
-      refetch();
+      refetchAll();
+      if (selectedCategory && selectedCategory !== 'All') {
+        refetchCategory();
+      }
     }
-  }, [isFocused]);
+  }, [isFocused, selectedCategory]);
+
+  const loading =
+    allLoading ||
+    (selectedCategory && selectedCategory !== 'All' && categoryLoading);
+  const error =
+    allError ||
+    (selectedCategory && selectedCategory !== 'All' && categoryError);
+
+  const allTransactions = allData?.transactions || [];
+
+  const displayedTransactions =
+    selectedCategory && selectedCategory !== 'All'
+      ? categoryData?.transactionsByCategory || []
+      : allTransactions;
+
+  const originalTransactions = allData?.transactions || [];
+
+  const income = originalTransactions
+    .filter(t => t.type === 'Income')
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const expense = originalTransactions
+    .filter(t => t.type === 'Expense')
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const balance = income - expense;
 
   const handleProfile = () => {
     navigation.navigate('Profile');
   };
 
-  if (loading) return <ActivityIndicator size="large" />;
-  if (error) return <Text>Error: {error.message}</Text>;
-
-  if (loading || !data) {
+  if (loading) {
     return (
       <SafeAreaView
         style={[
@@ -51,6 +100,7 @@ const HomeScreen = () => {
       </SafeAreaView>
     );
   }
+
   if (error) {
     return (
       <SafeAreaView style={styles.container}>
@@ -58,17 +108,6 @@ const HomeScreen = () => {
       </SafeAreaView>
     );
   }
-  const transactions = data.transactions;
-
-  const income = transactions
-    .filter(t => t.type === 'Income')
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  const expense = transactions
-    .filter(t => t.type === 'Expense')
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  const balance = income - expense;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -78,12 +117,10 @@ const HomeScreen = () => {
           source={require('../assets/images/logo.png')}
           style={styles.image}
         />
-
         <View style={styles.textContainer}>
           <Text>Welcome</Text>
           <Text style={styles.nameText}>Ajay</Text>
         </View>
-
         <View style={styles.rightHeader}>
           <TouchableOpacity
             style={styles.addButton}
@@ -100,20 +137,21 @@ const HomeScreen = () => {
       </View>
 
       {/* Card Section */}
-
       <CardSection income={income} expense={expense} balance={balance} />
 
-      {/* Transaction Section */}
-
+      {/* Filter + Transaction Header */}
       <View style={styles.transactionContainer}>
         <Text style={styles.transactionText}>Recent Transaction</Text>
         <View style={{ zIndex: 1000 }}>
-          <CategoryDropdown />
+          <CategoryDropdown
+            selectedCategory={selectedCategory}
+            onSelectCategory={category => setSelectedCategory(category)}
+          />
         </View>
       </View>
 
       {/* Recent Transactions */}
-      <RecentTransactions transactions={data.transactions} />
+      <RecentTransactions transactions={displayedTransactions} />
     </SafeAreaView>
   );
 };
