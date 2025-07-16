@@ -13,7 +13,7 @@ import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CardSection from '../components/CardSection';
 import RecentTransactions from '../components/RecentTransactions';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import CategoryDropdown from '../components/CategoryDropdown';
 
 // Apollo
@@ -23,7 +23,14 @@ import { GET_TRANSACTIONS } from '../Graphql/queries/queries';
 const HomeScreen = () => {
   const styles = useHomeScreenStyle();
   const navigation = useNavigation();
-  const { loading, error, data } = useQuery(GET_TRANSACTIONS);
+  const { loading, error, data, refetch } = useQuery(GET_TRANSACTIONS);
+  const isFocused = useIsFocused();
+
+  React.useEffect(() => {
+    if (isFocused) {
+      refetch();
+    }
+  }, [isFocused]);
 
   const handleProfile = () => {
     navigation.navigate('Profile');
@@ -32,10 +39,25 @@ const HomeScreen = () => {
   if (loading) return <ActivityIndicator size="large" />;
   if (error) return <Text>Error: {error.message}</Text>;
 
-  if (!loading && data) {
-    console.log('Transactions:', data.transactions);
+  if (loading || !data) {
+    return (
+      <SafeAreaView
+        style={[
+          styles.container,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+      >
+        <ActivityIndicator size="large" color="#000" />
+      </SafeAreaView>
+    );
   }
-
+  if (error) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={{ color: 'red' }}>Error: {error.message}</Text>
+      </SafeAreaView>
+    );
+  }
   const transactions = data.transactions;
 
   const income = transactions

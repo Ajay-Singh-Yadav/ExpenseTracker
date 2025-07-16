@@ -11,7 +11,7 @@ const useRecentTxtStyle = () => {
       StyleSheet.create({
         container: {
           flexDirection: 'row',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
           marginHorizontal: Sizes.scale(20),
           backgroundColor: theme.white,
@@ -34,22 +34,26 @@ const useRecentTxtStyle = () => {
         },
         LeftView: {
           flexDirection: 'row',
-          alignItems: 'center',
+          alignItems: 'flex-start',
+          flex: 1,
         },
         rightView: {
           flexDirection: 'row',
           alignItems: 'center',
           marginLeft: Sizes.scale(10),
+          flexShrink: 0,
         },
 
         slaryView: {
           marginLeft: Sizes.scale(10),
+          flex: 1,
         },
 
         salaryText: {
           fontSize: Sizes.fontSM,
           fontWeight: '500',
           color: theme.text,
+          flexWrap: 'wrap',
         },
         amoutText: {
           fontSize: Sizes.fontSM,
@@ -61,6 +65,7 @@ const useRecentTxtStyle = () => {
           color: theme.text,
         },
         deleteIcon: {
+          height: '100%',
           borderLeftWidth: 2,
           borderLeftColor: theme.border,
           marginLeft: Sizes.scale(10),

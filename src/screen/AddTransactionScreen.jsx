@@ -85,7 +85,7 @@ const AddTransactionScreen = () => {
         }),
       );
 
-      navigation.goBack();
+      navigation.navigate('Home', { refetchOnFocus: true });
     } catch (err) {
       console.error('❌ Failed to add transaction:', err.message);
     }
