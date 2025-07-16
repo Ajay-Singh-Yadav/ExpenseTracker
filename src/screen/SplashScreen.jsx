@@ -3,7 +3,7 @@ import { Animated, View, Image, InteractionManager, Text } from 'react-native';
 import useSplash from '../hooks/useSplash';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import auth from '@react-native-firebase/auth';
+import getAuth from '@react-native-firebase/auth';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -19,7 +19,7 @@ const SplashScreen = () => {
     }).start();
 
     const chechUser = () => {
-      const unsubscribe = auth().onAuthStateChanged(user => {
+      const unsubscribe = getAuth().onAuthStateChanged(user => {
         if (user) {
           navigation.replace('Home');
         } else {
@@ -29,7 +29,7 @@ const SplashScreen = () => {
       return unsubscribe;
     };
 
-    const timeout = setTimeout(chechUser, 20000);
+    const timeout = setTimeout(chechUser, 2500);
     return () => {
       clearTimeout(timeout);
     };

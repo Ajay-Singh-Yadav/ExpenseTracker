@@ -29,13 +29,12 @@ const useRecentTxtStyle = () => {
         contentConatiner: {
           paddingBottom: 25,
         },
-        image: {
-          width: Sizes.scale(30),
-          height: Sizes.scale(30),
-          resizeMode: 'contain',
+        recentIcon: {
+          alignItems: 'center',
         },
         LeftView: {
           flexDirection: 'row',
+          alignItems: 'center',
         },
         rightView: {
           flexDirection: 'row',
@@ -60,7 +59,6 @@ const useRecentTxtStyle = () => {
         datetext: {
           fontSize: Sizes.fontXXS,
           color: theme.text,
-          textAlign: 'center',
         },
         deleteIcon: {
           borderLeftWidth: 2,

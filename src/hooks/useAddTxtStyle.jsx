@@ -54,8 +54,8 @@ const useAddTxtStyle = () => {
           width: isportrait ? width * 0.9 : width * 0.95,
 
           height: isLandscape
-            ? Sizes.verticalScale(150)
-            : Sizes.verticalScale(150),
+            ? Sizes.verticalScale(500)
+            : Sizes.verticalScale(500),
 
           padding: Sizes.scale(16),
           shadowColor: '#000',
@@ -95,6 +95,15 @@ const useAddTxtStyle = () => {
           marginHorizontal: Sizes.scale(5),
           marginTop: Sizes.verticalScale(10),
           borderBottomWidth: 2,
+          borderColor: theme.border,
+        },
+        titleContainer: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginHorizontal: Sizes.scale(5),
+          marginTop: Sizes.verticalScale(20),
+          borderWidth: 2,
+          borderRadius: Sizes.scale(5),
           borderColor: theme.border,
         },
         input: {

@@ -18,12 +18,17 @@ const useProfileStyle = () => {
           flex: 1,
           paddingHorizontal: Sizes.scale(16),
           paddingTop: Sizes.verticalScale(20),
-          backgroundColor: '#fff',
+          backgroundColor: theme.background,
+        },
+        headerContainer: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: Sizes.scale(10),
+          marginBottom: Sizes.verticalScale(20),
         },
         header: {
-          fontSize: Sizes.fontSM,
-          fontWeight: '600',
-          marginBottom: Sizes.verticalScale(10),
+          fontSize: Sizes.fontMD,
+          fontWeight: '500',
         },
         profileContainer: {
           flexDirection: 'row',
@@ -42,15 +47,16 @@ const useProfileStyle = () => {
         avatarText: {
           fontSize: Sizes.fontSM,
           fontWeight: '600',
-          color: '#000',
+          color: theme.text,
         },
         name: {
           fontSize: Sizes.fontSM,
           fontWeight: '700',
+          color: theme.text,
         },
         number: {
           fontSize: Sizes.fontXS,
-          color: '#555',
+          color: theme.text,
         },
         sectionTitle: {
           fontWeight: '600',
@@ -60,11 +66,17 @@ const useProfileStyle = () => {
         menuItem: {
           flexDirection: 'row',
           alignItems: 'center',
-          paddingVertical: Sizes.verticalScale(10),
-          gap: Sizes.scale(10),
+          paddingVertical: Sizes.scale(10),
+          marginHorizontal: Sizes.scale(5),
+          gap: Sizes.scale(5),
+        },
+        menuContent: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: Sizes.scale(5),
         },
         menuText: {
-          //   fontSize: Sizes.fontXS,
+          color: theme.text,
         },
         sectionLabel: {
           marginTop: Sizes.verticalScale(20),
@@ -90,7 +102,7 @@ const useProfileStyle = () => {
           textAlign: 'center',
           marginTop: Sizes.verticalScale(20),
 
-          color: '#555',
+          color: theme.text,
         },
       }),
     [theme, width, height, isLandscape],

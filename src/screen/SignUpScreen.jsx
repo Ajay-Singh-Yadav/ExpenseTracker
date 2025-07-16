@@ -4,8 +4,6 @@ import InputField from '../components/InputField';
 import { useNavigation } from '@react-navigation/native';
 import useLogInStyle from '../hooks/useLogInStyle';
 
-// import auth from '@react-native-firebase/auth';
-
 import getAuth from '@react-native-firebase/auth';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';

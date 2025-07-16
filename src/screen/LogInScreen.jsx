@@ -39,6 +39,7 @@ const LoginScreen = () => {
 
   const handleLogIn = async (values, { setSubmitting, setErrors }) => {
     const { email, password } = values;
+
     try {
       await getAuth().signInWithEmailAndPassword(email, password);
       navigation.navigate('Home');

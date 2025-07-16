@@ -4,10 +4,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import CardSection from '../components/CardSection';
 import RecentTransactions from '../components/RecentTransactions';
 import { useNavigation } from '@react-navigation/native';
+import CategoryDropdown from '../components/CategoryDropdown';
 
 const HomeScreen = () => {
   const styles = useHomeScreenStyle();
@@ -53,7 +53,12 @@ const HomeScreen = () => {
 
       {/* Transaction Section */}
 
-      <Text style={styles.transactionText}>Recent Transaction</Text>
+      <View style={styles.transactionContainer}>
+        <Text style={styles.transactionText}>Recent Transaction</Text>
+        <View style={{ zIndex: 1000 }}>
+          <CategoryDropdown />
+        </View>
+      </View>
 
       {/* Recent Transactions */}
       <RecentTransactions />
@@ -62,5 +67,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});

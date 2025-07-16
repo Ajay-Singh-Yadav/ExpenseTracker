@@ -65,12 +65,18 @@ const useHomeScreenStyle = () => {
           marginLeft: Sizes.scale(10),
           marginTop: Sizes.verticalScale(10),
         },
+        transactionContainer: {
+          marginTop: Sizes.verticalScale(10),
+          alignItems: 'center',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginRight: Sizes.scale(18),
+        },
         transactionText: {
           fontSize: Sizes.fontMD,
           fontWeight: '500',
           color: theme.text,
-          marginLeft: Sizes.scale(10),
-          marginTop: Sizes.verticalScale(10),
+          marginLeft: Sizes.scale(18),
         },
         settingButton: {
           alignSelf: 'flex-end',
