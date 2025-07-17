@@ -19,10 +19,6 @@ const useSplash = () => {
           justifyContent: 'center',
           alignItems: 'center',
         },
-        text: {
-          color: theme.text,
-          fontSize: 16,
-        },
         lottie: {
           width: Sizes.screenWidth,
           height: Sizes.screenHeight * 0.5,

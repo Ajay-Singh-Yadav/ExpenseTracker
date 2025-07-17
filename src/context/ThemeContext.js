@@ -14,6 +14,8 @@ const loadThemeByKey = async key => {
   switch (key) {
     case 'coffee':
       return (await import('../themes/coffee')).default;
+    case 'dark':
+      return (await import('../themes/dark')).default;
     case 'forest':
       return (await import('../themes/forest')).default;
     case 'purple':

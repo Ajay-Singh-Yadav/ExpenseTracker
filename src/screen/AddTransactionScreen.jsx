@@ -43,23 +43,6 @@ const AddTransactionScreen = () => {
 
   const navigation = useNavigation();
 
-  // const handleAdd = () => {
-  //   if (!amount || !type || !title || !selectedCategory) return;
-
-  //   dispatch(
-  //     addTransaction({
-  //       id: uuidv4(),
-  //       amount: parseFloat(amount),
-  //       type,
-  //       timestamp: Date.now(),
-  //       title,
-  //       category: selectedCategory,
-  //     }),
-  //   );
-
-  //   navigation.goBack();
-  // };
-
   const handleAdd = async () => {
     if (!amount || !type || !title || !selectedCategory) return;
 

@@ -115,7 +115,7 @@ const ProfileScreen = () => {
             <View style={modalStyle.modalView}>
               <Text style={modalStyle.modalTitle}>Select Theme</Text>
 
-              {['coffee', 'forest', 'ocean', 'purple'].map(option => (
+              {['coffee', 'dark', 'forest', 'ocean', 'purple'].map(option => (
                 <Pressable
                   key={option}
                   style={modalStyle.radioButton}

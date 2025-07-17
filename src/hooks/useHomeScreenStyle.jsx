@@ -32,6 +32,12 @@ const useHomeScreenStyle = () => {
           flex: 1,
           marginLeft: Sizes.scale(12),
         },
+        welcomeText: {
+          color: theme.text,
+        },
+        icon: {
+          color: theme.text,
+        },
         nameText: {
           fontSize: Sizes.fontSM,
           fontWeight: 'bold',

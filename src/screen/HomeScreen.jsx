@@ -20,8 +20,11 @@ import {
   GET_TRANSACTIONS,
   GET_TRANSACTIONS_BY_CATEGORY,
 } from '../Graphql/queries/queries';
+import { useTheme } from '../context/ThemeContext';
+import Sizes from '../utils/responsive';
 
 const HomeScreen = () => {
+  const theme = useTheme();
   const styles = useHomeScreenStyle();
   const navigation = useNavigation();
   const isFocused = useIsFocused();
@@ -88,19 +91,6 @@ const HomeScreen = () => {
     navigation.navigate('Profile');
   };
 
-  if (loading) {
-    return (
-      <SafeAreaView
-        style={[
-          styles.container,
-          { justifyContent: 'center', alignItems: 'center' },
-        ]}
-      >
-        <ActivityIndicator size="large" color="#000" />
-      </SafeAreaView>
-    );
-  }
-
   if (error) {
     return (
       <SafeAreaView style={styles.container}>
@@ -118,7 +108,7 @@ const HomeScreen = () => {
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <Text>Welcome</Text>
+          <Text style={styles.welcomeText}>Welcome</Text>
           <Text style={styles.nameText}>Ajay</Text>
         </View>
         <View style={styles.rightHeader}>
@@ -131,7 +121,11 @@ const HomeScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.logoutButton} onPress={handleProfile}>
-            <Ionicons name="settings-outline" size={28} color="#000" />
+            <Ionicons
+              name="settings-outline"
+              size={Sizes.scale(20)}
+              color={theme.text}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -151,7 +145,30 @@ const HomeScreen = () => {
       </View>
 
       {/* Recent Transactions */}
-      <RecentTransactions transactions={displayedTransactions} />
+
+      {loading ? (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <ActivityIndicator size="large" color="#000" />
+        </View>
+      ) : displayedTransactions.length === 0 ? (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Text>No transactions found</Text>
+        </View>
+      ) : (
+        <RecentTransactions transactions={displayedTransactions} />
+      )}
     </SafeAreaView>
   );
 };

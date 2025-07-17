@@ -30,7 +30,7 @@ const useRecentTxtStyle = () => {
           paddingBottom: 25,
         },
         recentIcon: {
-          alignItems: 'center',
+          alignSelf: 'center',
         },
         LeftView: {
           flexDirection: 'row',
