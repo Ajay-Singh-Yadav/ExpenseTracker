@@ -5,6 +5,7 @@ import Sizes from '../utils/responsive';
 // icons
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+import { useTheme } from '../context/ThemeContext';
 
 const categories = [
   { label: 'All', value: 'All', icon: 'apps-outline', lib: Ionicons },
@@ -40,6 +41,7 @@ const categories = [
 ];
 
 const CategoryDropdown = ({ selectedCategory, onSelectCategory }) => {
+  const { theme } = useTheme();
   const currentValue = selectedCategory === '' ? 'All' : selectedCategory;
 
   const selectedLabel =
@@ -61,11 +63,18 @@ const CategoryDropdown = ({ selectedCategory, onSelectCategory }) => {
           onSelectCategory(item.value);
         }
       }}
-      placeholderStyle={styles.placeholder}
-      selectedTextStyle={styles.selectedText}
+      placeholderStyle={[styles.placeholder, { color: theme.textLight }]}
+      selectedTextStyle={[styles.selectedText, { color: theme.text }]}
       containerStyle={styles.dropdownBox}
-      style={[styles.dropdown, { width: dynamicWidth }]}
-      iconStyle={styles.iconStyle}
+      style={[
+        styles.dropdown,
+        {
+          width: dynamicWidth,
+          borderColor: theme.border,
+          backgroundColor: theme.white,
+        },
+      ]}
+      iconStyle={[styles.iconStyle, { tintColor: theme.text }]}
     />
   );
 };
@@ -84,18 +93,16 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: Sizes.scale(16),
     height: Sizes.scale(16),
-    tintColor: '#888',
+
     justifyContent: 'center',
   },
   placeholder: {
     fontSize: 12,
-    color: '#888',
   },
   dropdownBox: {
     borderRadius: 10,
   },
   selectedText: {
     fontSize: 12,
-    color: '#000',
   },
 });

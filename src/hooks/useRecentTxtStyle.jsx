@@ -75,6 +75,12 @@ const useRecentTxtStyle = () => {
         icon: {
           marginLeft: Sizes.scale(10),
         },
+        categoryView: {
+          marginTop: Sizes.verticalScale(2),
+          flexDirection: 'row',
+          gap: Sizes.scale(3),
+          alignItems: 'center',
+        },
       }),
     [theme],
   );

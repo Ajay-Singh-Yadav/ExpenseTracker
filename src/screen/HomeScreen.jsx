@@ -24,7 +24,7 @@ import { useTheme } from '../context/ThemeContext';
 import Sizes from '../utils/responsive';
 
 const HomeScreen = () => {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const styles = useHomeScreenStyle();
   const navigation = useNavigation();
   const isFocused = useIsFocused();
