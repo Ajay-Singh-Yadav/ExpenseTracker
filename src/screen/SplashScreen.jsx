@@ -3,7 +3,8 @@ import { Animated, View, Image, InteractionManager, Text } from 'react-native';
 import useSplash from '../hooks/useSplash';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import getAuth from '@react-native-firebase/auth';
+// import getAuth from '@react-native-firebase/auth';
+import { getAuth, onAuthStateChanged } from '@react-native-firebase/auth';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -12,6 +13,7 @@ const SplashScreen = () => {
   const lottieRef = useRef(null);
 
   useEffect(() => {
+    const auth = getAuth();
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 900,
@@ -19,7 +21,7 @@ const SplashScreen = () => {
     }).start();
 
     const chechUser = () => {
-      const unsubscribe = getAuth().onAuthStateChanged(user => {
+      const unsubscribe = onAuthStateChanged(auth, user => {
         if (user) {
           navigation.replace('Home');
         } else {

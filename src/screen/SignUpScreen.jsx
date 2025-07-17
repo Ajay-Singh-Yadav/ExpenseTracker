@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import InputField from '../components/InputField';
 import { useNavigation } from '@react-navigation/native';
 import useLogInStyle from '../hooks/useLogInStyle';
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 import getAuth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -50,6 +53,25 @@ const SignUpScreen = () => {
       setSubmitting(false);
     }
   };
+
+  // useEffect(() => {
+  //   GoogleSignin.configure({
+  //     webClientId:
+  //       '922513545079-34654ik59turg90qlnnnudblf18hd4vp.apps.googleusercontent.com',
+  //   });
+  // }, []);
+
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     await GoogleSignin.hasPlayServices();
+  //     const { idToken } = await GoogleSignin.signIn();
+  //     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  //     await auth().signInWithCredential(googleCredential);
+  //     navigation.navigate('Home');
+  //   } catch (error) {
+  //     console.log('Google Sign-In Error:', error);
+  //   }
+  // };
 
   return (
     <ScrollView
@@ -147,7 +169,10 @@ const SignUpScreen = () => {
           <Ionicons name="phone-portrait-outline" size={30} color="#000" />
           <Text style={styles.mobileButtonText}>Mobile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.mobileButton}>
+        <TouchableOpacity
+          style={styles.mobileButton}
+          // onPress={handleGoogleSignIn}
+        >
           <Image
             source={require('../assets/icons/Google.png')}
             style={styles.googleIcon}

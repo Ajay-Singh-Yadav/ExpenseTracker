@@ -14,6 +14,7 @@ import useHomeScreenStyle from '../hooks/useHomeScreenStyle';
 import CardSection from '../components/CardSection';
 import RecentTransactions from '../components/RecentTransactions';
 import CategoryDropdown from '../components/CategoryDropdown';
+import LottieView from 'lottie-react-native';
 
 import { useQuery } from '@apollo/client';
 import {
@@ -29,6 +30,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [showLoader, setShowLoader] = useState(true);
 
   // Always fetch all transactions
   const {
@@ -60,6 +62,13 @@ const HomeScreen = () => {
       }
     }
   }, [isFocused, selectedCategory]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const loading =
     allLoading ||
@@ -94,7 +103,15 @@ const HomeScreen = () => {
   if (error) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text style={{ color: 'red' }}>Error: {error.message}</Text>
+        <View style={styles.errorContainer}>
+          <LottieView
+            source={require('../assets/animations/loader.json')}
+            autoPlay
+            loop={false}
+            style={styles.errorLottie}
+          />
+          <Text style={styles.errorText}>Error: {error.message}</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -137,24 +154,33 @@ const HomeScreen = () => {
       <View style={styles.transactionContainer}>
         <Text style={styles.transactionText}>Recent Transaction</Text>
         <View style={{ zIndex: 1000 }}>
-          <CategoryDropdown
+          {/* <CategoryDropdown
             selectedCategory={selectedCategory}
             onSelectCategory={category => setSelectedCategory(category)}
+          /> */}
+          <CategoryDropdown
+            selectedCategory={selectedCategory}
+            onSelectCategory={category => {
+              setShowLoader(true); // show animation
+              setSelectedCategory(category);
+              setTimeout(() => {
+                setShowLoader(false); // hide after 2 sec
+              }, 1000);
+            }}
           />
         </View>
       </View>
 
       {/* Recent Transactions */}
 
-      {loading ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <ActivityIndicator size="large" color="#000" />
+      {showLoader ? (
+        <View style={styles.loaderContainer}>
+          <LottieView
+            source={require('../assets/animations/loader.json')}
+            autoPlay
+            loop
+            style={styles.lottie}
+          />
         </View>
       ) : displayedTransactions.length === 0 ? (
         <View
@@ -164,7 +190,7 @@ const HomeScreen = () => {
             alignItems: 'center',
           }}
         >
-          <Text>No transactions found</Text>
+          <Text style={{ color: theme.text }}>No transactions found</Text>
         </View>
       ) : (
         <RecentTransactions transactions={displayedTransactions} />

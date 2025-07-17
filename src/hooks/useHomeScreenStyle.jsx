@@ -90,6 +90,15 @@ const useHomeScreenStyle = () => {
           marginRight: Sizes.scale(15),
           marginTop: Sizes.verticalScale(5),
         },
+        loaderContainer: {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        lottie: {
+          width: isLandscape ? width * 0.3 : width * 0.5,
+          height: isLandscape ? height * 0.3 : height * 0.5,
+        },
       }),
     [theme],
   );

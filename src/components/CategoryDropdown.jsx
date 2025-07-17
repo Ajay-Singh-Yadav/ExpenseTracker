@@ -2,56 +2,60 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Sizes from '../utils/responsive';
-// icons
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import { useTheme } from '../context/ThemeContext';
 
-const categories = [
-  { label: 'All', value: 'All', icon: 'apps-outline', lib: Ionicons },
-  {
-    label: 'Food & Drinks',
-    value: 'Food & Drinks',
-    icon: 'fast-food-outline',
-    lib: Ionicons,
-  },
-  { label: 'Shopping', value: 'Shopping', icon: 'shopping-bag', lib: Feather },
-  { label: 'Travel', value: 'Travel', icon: 'airplane-outline', lib: Ionicons },
-  {
-    label: 'Entertainment',
-    value: 'Entertainment',
-    icon: 'film-outline',
-    lib: Ionicons,
-  },
-  {
-    label: 'Income',
-    value: 'Income',
-    icon: 'cash-outline',
-    lib: Ionicons,
-  },
-  { label: 'Bills', value: 'Bills', icon: 'file-text', lib: Feather },
-  { label: 'Rent', value: 'Rent', icon: 'home-outline', lib: Ionicons },
-  {
-    label: "Loan & EMI's",
-    value: 'Loan & EMI',
-    icon: 'credit-card',
-    lib: Feather,
-  },
-  { label: 'Others', value: 'Others', icon: 'apps-outline', lib: Ionicons },
-];
+import { useTheme } from '../context/ThemeContext';
+import dropdown from '../constant/dropdown';
+
+// const categories = [
+//   { label: 'All', value: 'All', icon: 'apps-outline', lib: Ionicons },
+//   {
+//     label: 'Food & Drinks',
+//     value: 'Food & Drinks',
+//     icon: 'fast-food-outline',
+//     lib: Ionicons,
+//   },
+//   { label: 'Shopping', value: 'Shopping', icon: 'shopping-bag', lib: Feather },
+//   { label: 'Travel', value: 'Travel', icon: 'airplane-outline', lib: Ionicons },
+//   {
+//     label: 'Entertainment',
+//     value: 'Entertainment',
+//     icon: 'film-outline',
+//     lib: Ionicons,
+//   },
+//   {
+//     label: 'Income',
+//     value: 'Income',
+//     icon: 'cash-outline',
+//     lib: Ionicons,
+//   },
+//   {
+//     label: 'Bill Payments',
+//     value: 'Bill Payments',
+//     icon: 'file-text',
+//     lib: Feather,
+//   },
+//   { label: 'Rent', value: 'Rent', icon: 'home-outline', lib: Ionicons },
+//   {
+//     label: "Loan & EMI's",
+//     value: 'Loan & EMI',
+//     icon: 'credit-card',
+//     lib: Feather,
+//   },
+//   { label: 'Others', value: 'Others', icon: 'apps-outline', lib: Ionicons },
+// ];
 
 const CategoryDropdown = ({ selectedCategory, onSelectCategory }) => {
   const { theme } = useTheme();
   const currentValue = selectedCategory === '' ? 'All' : selectedCategory;
 
   const selectedLabel =
-    categories.find(item => item.value === currentValue)?.label ?? '';
+    dropdown.find(item => item.value === currentValue)?.label ?? '';
 
   const dynamicWidth = Sizes.scale(selectedLabel.length > 8 ? 100 : 75);
 
   return (
     <Dropdown
-      data={categories}
+      data={dropdown}
       labelField="label"
       valueField="value"
       placeholder="Category"

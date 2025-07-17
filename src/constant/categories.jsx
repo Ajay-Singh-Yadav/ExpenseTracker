@@ -9,9 +9,8 @@ const categories = [
   { name: "Loan & EMI's", icon: 'credit-card', lib: Feather },
   { name: 'Rent', icon: 'home-outline', lib: Ionicons },
   { name: 'Income', icon: 'cash-outline', lib: Ionicons },
-  { name: 'medical bills', icon: 'medical-outline', lib: Ionicons },
+  { name: 'Medical Bills', icon: 'medical-outline', lib: Ionicons },
   { name: 'Bill Payments', icon: 'file-text', lib: Feather },
-
   { name: 'Others', icon: 'apps-outline', lib: Ionicons },
 ];
 
